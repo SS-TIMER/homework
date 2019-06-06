@@ -1,31 +1,33 @@
 package io.renren.modules.sys.dao;
 
-import io.renren.modules.sys.entity.SysDduinfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.renren.modules.sys.entity.SysDduinfoEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
+ * Created on 2019/6/611:25.
  *
- *
- * @author liupine
- * @email younamesong@163.com
- * @date 2019-06-03 17:34:15
+ * @Author liupine.
+ * @eamil younamesong@163.com
  */
+
 @Mapper
 public interface SysDduinfoDao extends BaseMapper<SysDduinfoEntity> {
     List<SysDduinfoEntity> findAll();
 
     @Transactional
     void addDiData(SysDduinfoEntity sysdduinfoEntity);
+
     @Transactional
     void addDuData(SysDduinfoEntity sysDduinfoEntity);
 
 
     @Transactional
     void updateDiData(SysDduinfoEntity sysdduinfoEntity);
+
     @Transactional
     void updateDuData(SysDduinfoEntity sysdduinfoEntity);
 
@@ -35,3 +37,4 @@ public interface SysDduinfoDao extends BaseMapper<SysDduinfoEntity> {
 
     SysDduinfoEntity getInfoById(String id);
 }
+

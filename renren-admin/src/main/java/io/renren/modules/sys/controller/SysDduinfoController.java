@@ -4,23 +4,23 @@ import java.util.Arrays;
 import java.util.List;
 
 
+import io.renren.modules.sys.entity.SysDduinfoEntity;
+import io.renren.modules.sys.service.SysDduinfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.renren.modules.sys.entity.SysDduinfoEntity;
-import io.renren.modules.sys.service.SysDduinfoService;
 import io.renren.common.utils.R;
 
 /**
+ * Created on 2019/6/611:12.
  *
- *
- * @author liupine
- * @email younamesong@163.com
- * @date 2019-06-03 17:34:15
+ * @Author liupine.
+ * @eamil younamesong@163.com
  */
+
 
 @RestController
 @RequestMapping("sys/sysdduinfo")
@@ -81,7 +81,7 @@ public class SysDduinfoController {
 */
     @RequestMapping("/delete")
     //    @RequiresPermissions("sys:sysself:delete")
-    public R delete(@RequestBody Long[] ids){
+    public R delete(@RequestBody Long[] ids) {
         sysDduinfoService.removeByIds(Arrays.asList(ids));
 
         return R.ok();

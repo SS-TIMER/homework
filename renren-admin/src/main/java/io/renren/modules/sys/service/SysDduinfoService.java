@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 
+ * Created on 2019/6/611:27.
  *
- * @author liupine
- * @email younamesong@163.com
- * @date 2019-06-03 17:34:15
+ * @Author liupine.
+ * @eamil younamesong@163.com
  */
+
 
 public interface SysDduinfoService extends IService<SysDduinfoEntity> {
 
@@ -22,9 +22,11 @@ public interface SysDduinfoService extends IService<SysDduinfoEntity> {
     PageUtils queryPage(Map<String, Object> params);
 
     void addDuData(SysDduinfoEntity sysDduinfoEntity);
+
     void addDiData(SysDduinfoEntity sysDduinfoEntity);
 
     void updateDuData(SysDduinfoEntity sysDduinfoEntity);
+
     void updateDiData(SysDduinfoEntity sysDduinfoEntity);
 
 
@@ -33,4 +35,5 @@ public interface SysDduinfoService extends IService<SysDduinfoEntity> {
     SysDduinfoEntity getInfoById(String id);
 
 }
+
 
