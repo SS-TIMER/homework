@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.sys.dao.SysDduinfoDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.sys.entity.SysDduinfoEntity" id="sysDduinfoMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="userId" column="userId"/>
+    </resultMap>
+
+    <insert id="addDiData" parameterType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        INSERT INTO sys_dduinfo (name, sex, userId)
+        VALUES (#{name}, #{sex}, #{userId});
+    </insert>
+    <insert id="addDuData" parameterType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        INSERT INTO sys_dduser (username, password)
+        VALUES (#{userId}, #{password});
+    </insert>
+    <update id="updateDiData" parameterType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        UPDATE sys_dduinfo
+        SET name   = #{name},
+            sex    = #{sex},
+            userId = #{userId}
+        WHERE id = #{id};
+    </update>
+    <update id="updateDuData" parameterType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        UPDATE sys_dduser
+        SET username = #{userId},
+            password = #{password}
+        WHERE id = #{id};
+    </update>
+    <select id="findAll" resultType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        select *
+        from sys_dduinfo d1
+                 inner join sys_dduser d2 on d1.userId = d2.username;
+    </select>
+    <select id="getInfoById" parameterType="java.lang.String"
+            resultType="io.renren.modules.sys.entity.SysDduinfoEntity">
+        select user.*, info.*
+        from sys_dduser user
+                 join sys_dduinfo info on user.username = info.userId
+        WHERE user.id = #{id};
+    </select>
+    <delete id="deleteDiData" parameterType="java.lang.String">
+        DELETE sys_dduser,sys_dduinfo
+        FROM sys_dduser
+                 LEFT JOIN sys_dduinfo ON sys_dduser.username = sys_dduinfo.userId
+        WHERE sys_dduinfo.id = #{id}
+    </delete>
+</mapper>
