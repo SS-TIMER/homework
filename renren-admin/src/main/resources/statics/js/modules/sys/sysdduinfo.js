@@ -6,18 +6,31 @@ $(function () {
             {label: 'id', name: 'id', index: 'id', width: 50, key: true},
             {label: '名字', name: 'name', index: 'name', width: 80},
             {
-                label: '性别', name: 'sex', index: 'sex', width: 80, formatter: function (item, index) {
+                label: '性别', name: 'sex', index: 'sex', width: 80,
+                formatter: function (item, index) {
                     console.log(item);
                     if (item === 0) {
-                        return  "男"
+                        return "男"
                     }
                     if (item === 1) {
                         return "女"
                     }
                 }
             },
-            {label: '账户', name: 'userId', index: 'user_id', width: 80},
-            {label: '密码', name: 'password', index: 'password', width: 80}
+            {
+                label: '账户', name: 'userId', index: 'user_id', width: 80
+            },
+            {
+                label: '密码', name: 'password', index: 'password', width: 80,
+                formatter: function (item, index) {
+                    console.log(item);
+                    if (item === null) {
+                        return "密码为空"
+                    } else {
+                        return "******"
+                    }
+                }
+            }
         ],
         viewrecords: true,
         height: 385,
@@ -52,9 +65,9 @@ var vm = new Vue({
         showList: true,
         title: null,
         sysDduinfo: {},
-        radioData:[
-            {value:'0',show:'男'},
-            {value:'1',show:'女'}
+        radioData: [
+            {value: '0', show: '男'},
+            {value: '1', show: '女'}
         ],
     },
     methods: {
@@ -75,7 +88,7 @@ var vm = new Vue({
             vm.title = "修改";
             vm.getInfo(id);
 
-            console.log("vm:"+JSON.stringify(vm.sysDduinfo))
+            console.log("vm:" + JSON.stringify(vm.sysDduinfo))
 
         },
         saveOrUpdate: function (event) {
@@ -143,9 +156,20 @@ var vm = new Vue({
                 page: page
             }).trigger("reloadGrid");
         },
-        getRadioVal: function(value){
+        getRadioVal: function (value) {
             console.log(value)
             vm.sysDduinfo.sex = value;
+        },
+        getPasTpye: function () {
+            if (demo_input.type == "password") {
+                demo_input.type = "text";
+                getpastype.classList.remove("glyphicon-eye-close")
+                getpastype.classList.add("glyphicon-eye-open")
+            }else {
+                demo_input.type = "password";
+                getpastype.classList.remove("glyphicon-eye-open")
+                getpastype.classList.add("glyphicon-eye-close")
+            }
         }
     }
 });
